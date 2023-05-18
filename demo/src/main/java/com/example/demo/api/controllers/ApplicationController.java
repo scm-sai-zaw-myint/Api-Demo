@@ -2,9 +2,11 @@ package com.example.demo.api.controllers;
 
 import com.example.demo.api.resources.MockData;
 import com.example.demo.api.response.PostResponse;
+import com.example.demo.web.form.PostForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,17 +28,25 @@ public class ApplicationController {
     }
 
     @PostMapping()
-    public PostResponse createNewPost(@RequestBody PostResponse post){
-        PostResponse newPost = new PostResponse(data.getPostLists().size(),data.getFaker().book().title(),data.getFaker().lorem().sentence());
+    public PostResponse createNewPost(@RequestBody PostForm post){
+        PostResponse newPost = new PostResponse(
+                data.getPostLists().size(),
+                post.getTitle(),
+                post.getDescription(),
+                post.getLicense(),
+                new Date());
+
         data.getPostLists().add(newPost);
+
         return newPost;
     }
 
     @PutMapping("/{id}")
-    public PostResponse updatePost(@PathVariable Integer id, @RequestBody PostResponse post){
+    public PostResponse updatePost(@PathVariable Integer id, @RequestBody PostForm post){
         PostResponse oldPost = data.getPostLists().get(id);
-        oldPost.setName(post.getName());
+        oldPost.setTitle(post.getTitle());
         oldPost.setDescription(post.getDescription());
+        oldPost.setLicense(post.getLicense());
         return oldPost;
     }
 
