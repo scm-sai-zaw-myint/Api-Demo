@@ -25,6 +25,16 @@ public class MockData {
         }
     }
 
+    public PostResponse getPostById(int id) {
+        PostResponse post = null;
+        for(PostResponse p : this.getPostLists()){
+            if(p.getId() == id){
+                post = p;
+            }
+        }
+        return post;
+    }
+
     public void addNewPost(PostResponse post) {
         post.setId(this.getPostLists().size());
         post.setCreatedAt(new Date());

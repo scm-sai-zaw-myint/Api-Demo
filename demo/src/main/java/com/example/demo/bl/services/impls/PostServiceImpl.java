@@ -20,7 +20,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostResponse getPostById(Integer id) {
-        return data.getPostLists().get(id);
+        return data.getPostById(id);
     }
 
     @Override
