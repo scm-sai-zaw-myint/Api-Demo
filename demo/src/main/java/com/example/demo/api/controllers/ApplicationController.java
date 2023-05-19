@@ -63,6 +63,6 @@ public class ApplicationController {
     public ResponseEntity<CommonResponse> deletePost(@PathVariable Integer id) {
         boolean success = this.postService.deletePost(id);
         CommonResponse commonResponse = new CommonResponse(success, success ? "Delete post success!" : "No post has been deleted!", new Date());
-        return new ResponseEntity<>(commonResponse, success ? HttpStatus.ACCEPTED : HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(commonResponse, success ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }
 }
