@@ -13,7 +13,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostResponse {
+public class PostResponse{
     Integer id;
     String title;
 
@@ -25,6 +25,5 @@ public class PostResponse {
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     Date createdAt;
-
 
 }
